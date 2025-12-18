@@ -1,0 +1,109 @@
+{{ define "main" }}
+{{ if .Params.cover }}
+<header class="main-header post-head" style="background-image: url({{ .Params.cover }})">
+    <nav class="main-nav overlay clearfix">
+{{ else }}
+<header class="main-header post-head no-cover">
+    <nav class="main-nav clearfix">
+{{ end }}
+        <a href="/" class="logo-readium"><i class="fa fa-home"></i></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post {{ .Params.subclass }}">
+
+        <header class="post-header">
+            <h1 class="post-title">{{ .Title }}</h1>
+            <section class="post-meta">
+            <time class="post-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+                {{ if .Params.tags }}
+                on
+                {{ range $index, $tag := .Params.tags }}{{ if $index }}, {{ end }}<a href='/tag/{{ $tag | urlize }}'>{{ $tag }}</a>{{ end }}
+                {{ end }}
+            </section>
+        </header>
+
+        <section class="post-content">
+
+            {{ .Content }}
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            {{ $author := index (where .Site.Params.authors "slug" .Params.categories) 0 }}
+            {{ if $author }}
+                {{ if $author.image }}
+                <figure class="author-image">
+                    <a class="img" href="/author/{{ $author.slug }}" style="background-image: url({{ $author.image }})"><span class="hidden">{{ $author.name }}'s Picture</span></a>
+                </figure>
+                {{ end }}
+
+                <section class="author">
+                    <h4><a href="/author/{{ $author.slug }}">{{ $author.name }}</a></h4>
+
+                    {{ if $author.bio }}
+                        <p>{{ $author.bio }}</p>
+                    {{ else }}
+                        <p>Read <a href="/author/{{ $author.slug }}">more posts</a> by this author.</p>
+                    {{ end }}
+                    <div class="author-meta">
+                        {{ if $author.location }}<span class="author-location icon-location"> {{ $author.location }}</span>{{ end }}
+                        {{ if $author.url }}<span class="author-link icon-link"><a href="{{ $author.url }}"> {{ $author.url }}</a></span>{{ end }}
+                        {{ if $author.twitter }}<span class="author-twitter icon-twitter"><a href="https://twitter.com/{{ $author.twitter }}"> @{{ $author.twitter }}</a></span>{{ end }}
+                    </div>
+                </section>
+            {{ end }}
+
+            <!-- /author -->
+
+            <section class="share">
+                <h4>Follow Us</h4>
+                <a class="icon-twitter" href="https://twitter.com/vluxeio"></a>
+                <a class="icon-email" href="mailto:dalton@vluxe.io"><i class="fa fa-envelope"></i></a>
+                <a class="icon-github" href="https://github.com/Vluxe"><i class="fa fa-github"></i></a>
+            </section>
+
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+
+    <!-- next_post -->
+    {{ with .NextInSection }}
+        {{ if .Params.cover }}
+        <a class="read-next-story" style="background-image: url({{ .Params.cover }})" href="{{ .RelPermalink }}">
+        {{ else }}
+        <a class="read-next-story no-cover" href="{{ .RelPermalink }}">
+        {{ end }}
+            <section class="post">
+                <h2>{{ .Title }}</h2>
+                <p>{{ .Summary | plainify | truncate 80 }}</p>
+            </section>
+        </a>
+    {{ end }}
+    <!-- /next_post -->
+    <!-- prev_post -->
+    {{ with .PrevInSection }}
+        {{ if .Params.cover }}
+        <a class="read-next-story prev" style="background-image: url({{ .Params.cover }})" href="{{ .RelPermalink }}">
+        {{ else }}
+        <a class="read-next-story prev no-cover" href="{{ .RelPermalink }}">
+        {{ end }}
+            <section class="post">
+                <h2>{{ .Title }}</h2>
+                <p>{{ .Summary | plainify | truncate 80 }}</p>
+            </section>
+        </a>
+    {{ end }}
+    <!-- /prev_post -->
+</aside>
+
+<!-- /post -->
+{{ end }}

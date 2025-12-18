@@ -1,0 +1,31 @@
+{{ define "main" }}
+<header class="main-header post-head no-cover">
+    <nav class="main-nav clearfix">
+        <a href="/" class="logo-readium"><i class="fa fa-home"></i></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post">
+        <header class="post-header">
+            <h1 class="post-title">{{ .Title }}</h1>
+        </header>
+
+        <section class="post-content">
+            <p>{{ .Content }}</p>
+            <div class="aboutAuthors">
+            {{ range .Site.Params.authors }}
+              <section class="author">
+                <div class="about-author-image" style="background-image: url({{ .image }})"></div>
+                <h4 class="about-author-title"><a href="{{ .url }}">{{ .name }}</a></h4>
+                <p class="about-bio">{{ .bio }}</p>
+              </section>
+              <hr>
+              <br />
+              <br />
+            {{ end }}
+            </div>
+        </section>
+    </article>
+</main>
+{{ end }}

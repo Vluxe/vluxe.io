@@ -1,0 +1,17 @@
+---
+layout: post
+title:  "One Year"
+date:   2015-03-16 10:00:00
+tags: [General]
+keywords: one year anniversary nontechnical update status
+categories: 'dalton'
+cover: 'assets/images/confetti-cover.jpg'
+navigation: True
+---
+
+March 10th 2015 represents the one anniversary for vluxe.io. Thank you all for being apart of it! Exciting things are to come for 2015!
+
+![](/assets/images/year.png)
+
+
+

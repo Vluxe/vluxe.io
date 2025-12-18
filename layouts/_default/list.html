@@ -1,0 +1,39 @@
+{{ define "main" }}
+<header class="main-header post-head no-cover">
+    <nav class="main-nav clearfix">
+        <a href="/" class="logo-readium"><i class="fa fa-home"></i></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post">
+        <header class="post-header">
+            <h1 class="post-title">{{ .Title }}</h1>
+        </header>
+
+        <section class="post-content">
+            {{ .Content }}
+
+            <div class="extra-pagination inner">
+                {{ partial "pagination.html" . }}
+            </div>
+
+            {{ range .Paginator.Pages }}
+            <article class="post">
+                <header class="post-header">
+                    <h2 class="post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+                </header>
+                <section class="post-excerpt">
+                    <p>{{ .Summary }} <a class="read-more" href="{{ .RelPermalink }}">&raquo;</a></p>
+                </section>
+                <footer class="post-meta">
+                    <time class="post-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+                </footer>
+            </article>
+            {{ end }}
+
+            {{ partial "pagination.html" . }}
+        </section>
+    </article>
+</main>
+{{ end }}

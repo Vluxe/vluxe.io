@@ -1,0 +1,13 @@
+<nav class="pagination" role="pagination">
+    {{ if .Paginator.HasPrev }}
+        {{ if eq .Paginator.Prev.PageNumber 1 }}
+            <a class="newer-posts" href="/" title="Previous Page">&laquo; Newer Posts</a>
+        {{ else }}
+            <a class="newer-posts" href="/page/{{ .Paginator.Prev.PageNumber }}/" title="Previous Page">&laquo; Newer Posts</a>
+      {{ end }}
+    {{ end }}
+    <span class="page-number"> Page {{ .Paginator.PageNumber }} of {{ .Paginator.TotalPages }} </span>
+    {{ if .Paginator.HasNext }}
+        <a class="older-posts" href="/page/{{ .Paginator.Next.PageNumber }}/" title="Next Page">Older Posts &raquo;</a>
+    {{ end }}
+</nav>

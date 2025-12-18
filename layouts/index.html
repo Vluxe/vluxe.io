@@ -1,0 +1,58 @@
+{{ define "main" }}
+<header class="main-header" style="background-image: url({{ .Site.Params.cover }})">
+    <nav class="main-nav overlay clearfix">
+        {{ if .Site.Params.logo }}<a class="blog-logo" href="/"><img src="{{ .Site.Params.logo }}" alt="Blog Logo" /></a>{{ end }}
+        <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+    </nav>
+    <div class="vertical">
+        <div class="main-header-content inner">
+            <h1 class="page-title">{{ .Site.Title }}</h1>
+            <h2 class="page-description">{{ .Site.Params.description }}</h2>
+        </div>
+    </div>
+    <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
+</header>
+
+<!-- The main content area on the homepage -->
+<main id="content" class="content" role="main">
+
+    <!-- Previous/next page links - only displayed on page 2+ -->
+    <div class="extra-pagination inner">
+        {{ partial "pagination.html" . }}
+    </div>
+
+    <!-- This is the post loop - each post will be output using this markup -->
+    {{ $paginator := .Paginate (where .Site.RegularPages "Type" "posts") }}
+    {{ range $paginator.Pages }}
+        {{ $author := index (where $.Site.Params.authors "slug" .Params.categories) 0 }}
+        <article class="post">
+            <header class="post-header">
+                <h2 class="post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+            </header>
+            <section class="post-excerpt">
+                <p>
+                {{ if .Params.summary }}
+                {{ .Params.summary }}
+                {{ else }}
+                {{ .Summary }}
+                {{ end }}
+                <a class="read-more" href="{{ .RelPermalink }}">&raquo;</a></p>
+            </section>
+            <footer class="post-meta">
+                {{ if $author }}
+                    {{ if $author.image }}<img class="author-thumb" src="{{ $author.image }}" alt="Author image" nopin="nopin" />{{ end }}
+                    <a href='/author/{{ $author.slug }}'>{{ $author.name }}</a>
+                {{ end }}
+                {{ if .Params.tags }}
+                    on
+                    {{ range $index, $tag := .Params.tags }}{{ if $index }}, {{ end }}<a href='/tag/{{ $tag | urlize }}'>{{ $tag }}</a>{{ end }}
+                {{ end }}
+                <time class="post-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+            </footer>
+        </article>
+    {{ end }}
+
+    <!-- Previous/next page links - displayed on every page -->
+    {{ partial "pagination.html" . }}
+</main>
+{{ end }}

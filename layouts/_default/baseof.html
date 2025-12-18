@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Page Meta -->
+    <title>{{ if .Title }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}</title>
+    <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico" >
+
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css"
+          href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/syntax.css" />
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    {{ partial "head.html" . }}
+
+</head>
+<body class="{{ if .IsHome }}home-template{{ else if eq .Type "posts" }}post-template{{ else }}page-template{{ end }} nav-closed">
+
+    {{ partial "navigation.html" . }}
+
+    <div class="site-wrapper">
+
+        {{ block "main" . }}{{ end }}
+
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/">{{ .Site.Title }}</a> &copy; {{ now.Year }}
+              <a href="https://twitter.com/vluxeio">@vluxeio</a>
+          </section>
+          <section class="poweredby">Theme by <a href="https://github.com/biomadeira/jasper">Jasper</a></section>
+        </footer>
+    </div>
+    <!-- highlight.js -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <!-- The main JavaScript file for Casper -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+
+    <!-- Add Google Analytics -->
+    {{ partial "analytics.html" . }}
+</body>
+</html>

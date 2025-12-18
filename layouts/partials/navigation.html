@@ -1,0 +1,17 @@
+<div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        <li class="nav-home{{ if .IsHome }} nav-current{{ end }}" role="presentation"><a href="/">Home</a></li>
+        <li class="nav-about{{ if eq .RelPermalink "/about/" }} nav-current{{ end }}" role="presentation"><a href="/about/">About</a></li>
+        <li class="nav-swift{{ if in .RelPermalink "swift" }} nav-current{{ end }}" role="presentation"><a href="/tag/swift/">Swift</a></li>
+        <li class="nav-go{{ if in .RelPermalink "go" }} nav-current{{ end }}" role="presentation"><a href="/tag/go/">Go</a></li>
+        <li class="nav-design{{ if in .RelPermalink "design" }} nav-current{{ end }}" role="presentation"><a href="/tag/design/">Design</a></li>
+        <li class="nav-comp-sci{{ if in .RelPermalink "comp-sci" }} nav-current{{ end }}" role="presentation"><a href="/tag/comp-sci/">Computer Science</a></li>
+        <li class="nav-search{{ if eq .RelPermalink "/search/" }} nav-current{{ end }}" role="presentation"><a href="/search/"><i class="fa fa-search"></i> Search</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="/index.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>

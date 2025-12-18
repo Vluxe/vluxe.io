@@ -1,0 +1,54 @@
+baseURL = "http://vluxe.io/"
+languageCode = "en-us"
+title = "Vluxe"
+
+[pagination]
+  pagerSize = 5
+
+[params]
+  description = "Simply Superb Software"
+  logo = "/images/logo.png"
+  cover = "/images/plans.jpg"
+  googleAnalytics = "UA-52182448-1"
+
+[params.social]
+  twitter = "https://twitter.com/vluxeio"
+  github = "https://github.com/vluxe"
+  email = "mailto:dalton@vluxe.io"
+
+[[params.authors]]
+  name = "Dalton Cherry"
+  slug = "dalton"
+  url = "https://daltoniam.com"
+  image = "https://www.gravatar.com/avatar/2fdc7b889f35118a7334187b15c5b957.png?r=x&s=320"
+  twitter = "daltoniam"
+  location = "Austin, Texas"
+  bio = "Dalton Cherry. Developer. Disciple. Computer science aficionado. Mobile enthusiast. Drum machine. Rock climbing and frisbee extraordinaire. The next American Ninja Warrior."
+
+[[params.authors]]
+  name = "Austin Cherry"
+  slug = "austin"
+  url = "https://austincherry.me"
+  image = "https://s.gravatar.com/avatar/b318dde74289b9eb1cfdb0ecff012742?s=320"
+  twitter = "acmacalister"
+  location = "Austin, Texas"
+  bio = "Master tactician. Defeated an entire armada of klingon war birds. The true last samurai. Believer in Jesus. Music fanatic and guitar player extraordinaire."
+
+[markup]
+  [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = true
+    lineNos = false
+    noClasses = true
+    style = "github"
+
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[permalinks]
+  posts = "/:contentbasename.html"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]

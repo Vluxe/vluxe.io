@@ -1,0 +1,16 @@
+{{- $posts := where .Site.RegularPages "Type" "posts" -}}
+{{- $index := slice -}}
+{{- range $posts -}}
+  {{- $author := index (where $.Site.Params.authors "slug" .Params.categories) 0 -}}
+  {{- $entry := dict
+    "title" .Title
+    "url" .RelPermalink
+    "date" (.Date.Format "Jan 2, 2006")
+    "summary" (default .Summary .Params.summary)
+    "content" (.Plain | truncate 5000)
+    "tags" .Params.tags
+    "author" (cond (ne $author nil) $author.name "")
+  -}}
+  {{- $index = $index | append $entry -}}
+{{- end -}}
+{{- $index | jsonify -}}
